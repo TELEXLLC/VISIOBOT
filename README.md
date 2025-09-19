@@ -29,16 +29,16 @@ If you have shared your token, RESET IT IMMEDIATELY in the Discord Developer Por
 
 1. Clone the repo, then:
     ```
-    pip install -r requirements.txt
+pip install -r requirements.txt
     ```
 2. Copy `.env.example` to `.env` and add your real tokens/keys.
 3. Run the bot:
     ```
-    python main.py
+python main.py
     ```
 4. (Optional) Build EXE with PyInstaller:
     ```
-    pip install pyinstaller
+pip install pyinstaller
     pyinstaller --onefile --windowed main.py
     ```
 
