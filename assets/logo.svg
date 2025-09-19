@@ -1,0 +1,12 @@
+<svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="140" height="140" rx="28" fill="#23272A"/>
+  <circle cx="70" cy="70" r="52" fill="#7289DA"/>
+  <ellipse cx="70" cy="80" rx="45" ry="18" fill="#99AAB5" opacity="0.45"/>
+  <g>
+    <rect x="55" y="45" width="10" height="40" rx="4" fill="#fff"/>
+    <rect x="75" y="55" width="10" height="30" rx="4" fill="#fff"/>
+    <circle cx="60" cy="87" r="5" fill="#fff"/>
+    <circle cx="80" cy="78" r="5" fill="#fff"/>
+  </g>
+  <text x="70" y="125" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial" font-size="22" font-weight="bold" letter-spacing="2">VB</text>
+</svg>
