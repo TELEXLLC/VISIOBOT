@@ -28,19 +28,90 @@ If you have shared your token, RESET IT IMMEDIATELY in the Discord Developer Por
 ## Installation
 
 1. Clone the repo, then:
-   ```
-   pip install -r requirements.txt
-   ```
+    ```
+    pip install -r requirements.txt
+    ```
 2. Copy `.env.example` to `.env` and add your real tokens/keys.
 3. Run the bot:
-   ```
-   python main.py
-   ```
+    ```
+    python main.py
+    ```
 4. (Optional) Build EXE with PyInstaller:
+    ```
+    pip install pyinstaller
+    pyinstaller --onefile --windowed main.py
+    ```
+
+---
+
+## Quick Start: Using This Code for Your Bot
+
+Follow these steps to get your Discord bot running using the code from this repository:
+
+### 1. Clone the Repository
+
+If you haven't already, open a terminal and run:
+```bash
+git clone https://github.com/TELEXLLC/VISIOBOT.git
+```
+Then enter the directory:
+```bash
+cd VISIOBOT
+```
+
+### 2. Install Dependencies
+
+Install the required Python packages:
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Configure the Bot
+
+- Copy the example environment file and fill it in:
+  ```bash
+  cp .env.example .env
+  ```
+- Open `.env` in a text editor and enter your **Discord Bot Token**, **OpenAI API Key**, and any other required credentials.
+
+### 4. Run the Bot
+
+Start the bot by running:
+```bash
+python main.py
+```
+
+### 5. (Optional) Build an Executable
+
+If you want to turn your bot into a standalone executable:
+```bash
+pip install pyinstaller
+pyinstaller --onefile --windowed main.py
+```
+You'll find the executable in the `dist/` directory.
+
+### 6. Customize the Code
+
+- Open the files in your code editor (like VSCode, PyCharm, etc.).
+- Make any changes or enhancements you need (e.g., commands, responses, UI tweaks).
+
+### 7. Push Changes (if you want them in the repo)
+
+If you want to save your changes to your own GitHub repository:
+1. Commit your changes:
+   ```bash
+   git add .
+   git commit -m "Describe your changes"
    ```
-   pip install pyinstaller
-   pyinstaller --onefile --windowed main.py
+2. Push to your fork or the original repo:
+   ```bash
+   git push origin main
    ```
+   *(Replace `main` with your branch name if needed.)*
+
+---
+
+**You’re ready to develop and launch your Discord bot using VISIOBOT!**
 
 ---
 
