@@ -8,7 +8,7 @@
   "workspaces": [
     "web",
     "mobile"
-  ],
+ ],
   "scripts": {
     "start:web": "npm --workspace web run start",
     "dev:web": "npm --workspace web run dev",
@@ -34,4 +34,11 @@
   ],
   "devDependencies": {},
   "dependencies": {}
+}
+
+
+{
+  "scripts": {
+    "vercel-build": "npm run prepare && next build"
+  }
 }
