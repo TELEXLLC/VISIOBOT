@@ -5,7 +5,7 @@ import os
 
 app = FastAPI()
 
-# You can set your Discord webhook URL as an environment variable for security.
+# Set your Discord webhook URL as an environment variable for security
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 
 class WebhookPayload(BaseModel):
