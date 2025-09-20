@@ -1,0 +1,30 @@
+name: Create Release ZIP
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  package-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Prepare clean release folder
+        run: |
+          mkdir release
+          cp README.md LICENSE logo-visiotec.svg icon-visiotec.svg release/
+          # Add your binary here, e.g.:
+          # cp visiotec.exe release/
+          # cp -r docs release/
+          cd release
+          zip -r ../${{ github.event.release.tag_name }}.zip ./*
+          cd ..
+
+      - name: Upload ZIP as release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ github.event.release.tag_name }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
