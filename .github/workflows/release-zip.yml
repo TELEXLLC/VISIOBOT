@@ -14,10 +14,14 @@ jobs:
       - name: Prepare clean release folder
         run: |
           mkdir release
-          cp README.md  release/
-          # Add your binary here, e.g.:
-          # cp visiotec.exe release/
-          # cp -r docs release/
+          cp README.md release/ || true
+          cp LICENSE release/ || true
+          cp logo-visiotec.svg release/ || true
+          cp icon-visiotec.svg release/ || true
+          # Update the next line if your executable has a different name or is in another folder:
+          cp visiotec.exe release/ || true
+          # Add additional binaries or files as needed, e.g.:
+          # cp another-binary.exe release/
           cd release
           zip -r ../${{ github.event.release.tag_name }}.zip ./*
           cd ..
