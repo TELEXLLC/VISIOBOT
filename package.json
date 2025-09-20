@@ -1,23 +1,37 @@
 {
   "name": "visiobot-monorepo",
   "version": "1.0.0",
-  "description": "Monorepo for VISIOBOT Discord bot, web UI, and related tools",
   "private": true,
+  "description": "Monorepo for VISIOBOT Discord bot, web UI, mobile app, and standout features",
+  "author": "TELEXLLC",
+  "license": "MIT",
   "workspaces": [
-    "web"
+    "web",
+    "mobile"
   ],
   "scripts": {
     "start:web": "npm --workspace web run start",
     "dev:web": "npm --workspace web run dev",
-    "build:web": "npm --workspace web run build"
+    "build:web": "npm --workspace web run build",
+    "lint:web": "npm --workspace web run lint || echo 'No lint script in web/'",
+    "start:mobile": "npm --workspace mobile run start || echo 'No mobile workspace yet'",
+    "build:mobile": "npm --workspace mobile run build || echo 'No mobile workspace yet'",
+    "start:discord": "python3 discord/main.py || python discord/main.py",
+    "test": "echo 'Add monorepo-wide tests or use workspace-specific tests.'",
+    "cool:qr": "node web/scripts/gen-qr.js",
+    "cool:theme": "echo 'Theme toggling is handled in web/theme-toggle.js'",
+    "cool:status": "echo 'Bot status dashboard runs in web/'",
+    "help": "echo 'Available scripts: start:web, dev:web, build:web, lint:web, start:mobile, build:mobile, start:discord, cool:qr, cool:theme, cool:status'"
   },
   "keywords": [
     "discord",
     "bot",
-    "visiobot",
     "web",
-    "monorepo"
+    "mobile",
+    "visiobot",
+    "monorepo",
+    "cool"
   ],
-  "author": "TELEXLLC",
-  "license": "MIT"
+  "devDependencies": {},
+  "dependencies": {}
 }
