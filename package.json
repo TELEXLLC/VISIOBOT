@@ -1,0 +1,23 @@
+{
+  "name": "visiobot-monorepo",
+  "version": "1.0.0",
+  "description": "Monorepo for VISIOBOT Discord bot, web UI, and related tools",
+  "private": true,
+  "workspaces": [
+    "web"
+  ],
+  "scripts": {
+    "start:web": "npm --workspace web run start",
+    "dev:web": "npm --workspace web run dev",
+    "build:web": "npm --workspace web run build"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "visiobot",
+    "web",
+    "monorepo"
+  ],
+  "author": "TELEXLLC",
+  "license": "MIT"
+}
