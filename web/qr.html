@@ -1,0 +1,13 @@
+<input id="qr-text" placeholder="Enter text or URL" />
+<button onclick="generateQR()">Generate QR</button>
+<canvas id="qr-canvas"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script>
+function generateQR() {
+  const qr = new QRious({
+    element: document.getElementById('qr-canvas'),
+    value: document.getElementById('qr-text').value,
+    size: 200
+  });
+}
+</script>
