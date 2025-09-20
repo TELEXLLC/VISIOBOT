@@ -14,7 +14,7 @@ jobs:
       - name: Prepare clean release folder
         run: |
           mkdir release
-          cp README.md LICENSE logo-visiotec.svg icon-visiotec.svg release/
+          cp README.md  release/
           # Add your binary here, e.g.:
           # cp visiotec.exe release/
           # cp -r docs release/
