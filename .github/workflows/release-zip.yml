@@ -1,3 +1,12 @@
+# NOTE:
+# This workflow requires a Personal Access Token (PAT) with 'repo' permissions as a repository secret named RELEASE_TOKEN.
+# Also, for Discord bot integration, add the following secrets:
+# - DISCORD_BOT_TOKEN
+# - DISCORD_CLIENT_ID
+# - DISCORD_PUBLIC_KEY
+# - DISCORD_CLIENT_SECRET
+# NEVER commit secrets directly into workflow files or source code!
+
 name: Create Release ZIP
 
 on:
@@ -31,4 +40,13 @@ jobs:
         with:
           files: ${{ github.event.release.tag_name }}.zip
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+
+      # Example: Set Discord environment variables for later steps or actions if needed
+      # - name: Set up Discord secrets (if needed by your workflow)
+      #   run: echo "Discord secrets loaded"
+      #   env:
+      #     DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+      #     DISCORD_CLIENT_ID: ${{ secrets.DISCORD_CLIENT_ID }}
+      #     DISCORD_PUBLIC_KEY: ${{ secrets.DISCORD_PUBLIC_KEY }}
+      #     DISCORD_CLIENT_SECRET: ${{ secrets.DISCORD_CLIENT_SECRET }}
