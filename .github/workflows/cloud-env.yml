@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set environment variables on Vercel and Netlify
+      - name: Set environment variables on Vercel and Netlify with confirmation
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -23,13 +23,12 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           DEBUG_CHANNEL_ID: ${{ secrets.DEBUG_CHANNEL_ID }}
         run: |
-          cat > cloud_env_setup.sh <<'EOF'
-          #!/bin/bash
-          # Vercel environment variables
+          set -e
+          echo "Setting Vercel environment variables..."
           for var in DISCORD_BOT_TOKEN OPENAI_API_KEY DEBUG_CHANNEL_ID; do
             value="${!var}"
             if [ -n "$value" ]; then
-              curl -s -X POST "https://api.vercel.com/v9/projects/$VERCEL_PROJECT_ID/env" \
+              response=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://api.vercel.com/v9/projects/$VERCEL_PROJECT_ID/env" \
                 -H "Authorization: Bearer $VERCEL_TOKEN" \
                 -H "Content-Type: application/json" \
                 -d "{
@@ -37,24 +36,32 @@ jobs:
                   \"value\": \"$value\",
                   \"target\": [\"production\", \"preview\", \"development\"],
                   \"type\": \"encrypted\"
-                }"
-              echo "Set $var on Vercel"
+                }")
+              if [ "$response" = "200" ] || [ "$response" = "201" ]; then
+                echo "✅ Set $var on Vercel successfully."
+              else
+                echo "❌ Failed to set $var on Vercel. (HTTP $response)"
+                exit 1
+              fi
             fi
           done
 
-          # Netlify environment variables
+          echo "Setting Netlify environment variables..."
           ENV_JSON="{\"DISCORD_BOT_TOKEN\":\"$DISCORD_BOT_TOKEN\",\"OPENAI_API_KEY\":\"$OPENAI_API_KEY\""
           if [ -n "$DEBUG_CHANNEL_ID" ]; then
             ENV_JSON+=",\"DEBUG_CHANNEL_ID\":\"$DEBUG_CHANNEL_ID\""
           fi
           ENV_JSON+="}"
 
-          curl -s -X PATCH "https://api.netlify.com/api/v1/sites/$NETLIFY_SITE_ID" \
+          response=$(curl -s -o /dev/null -w "%{http_code}" -X PATCH "https://api.netlify.com/api/v1/sites/$NETLIFY_SITE_ID" \
             -H "Authorization: Bearer $NETLIFY_TOKEN" \
             -H "Content-Type: application/json" \
-            -d "{\"build_settings\": {\"env\": $ENV_JSON }}"
+            -d "{\"build_settings\": {\"env\": $ENV_JSON }}")
+          if [ "$response" = "200" ]; then
+            echo "✅ Environment variables updated on Netlify successfully."
+          else
+            echo "❌ Failed to update environment variables on Netlify. (HTTP $response)"
+            exit 1
+          fi
 
-          echo "Environment variables updated on Vercel and Netlify."
-          EOF
-          chmod +x cloud_env_setup.sh
-          ./cloud_env_setup.sh
+          echo "All environment variables set successfully!"
