@@ -17,6 +17,30 @@ A professional Discord Music Promotion Bot with OpenAI-powered post writing, deb
 
 ---
 
+## Web UI Deployment
+
+You can deploy a static landing page for VISIOBOT using the files in the `web/` folder:
+
+### 1. Deploy to Vercel
+
+- Go to [https://vercel.com/import](https://vercel.com/import)
+- Import your GitHub repository.
+- For the **root directory**, set it to `web`
+- Click **Deploy** — your site will be live on a Vercel URL!
+
+### 2. Deploy to Netlify
+
+- Go to [https://app.netlify.com/start](https://app.netlify.com/start)
+- Connect your GitHub repository.
+- Set the **Publish directory** to `web`
+- Click **Deploy Site**.
+
+### 3. Manual Hosting
+
+- Upload the contents of the `web/` folder to any static web host.
+
+---
+
 ## Security Notice
 
 **Never share your Discord bot token or OpenAI API key publicly.**  
@@ -29,16 +53,16 @@ If you have shared your token, RESET IT IMMEDIATELY in the Discord Developer Por
 
 1. Clone the repo, then:
     ```
-pip install -r requirements.txt
+    pip install -r requirements.txt
     ```
 2. Copy `.env.example` to `.env` and add your real tokens/keys.
 3. Run the bot:
     ```
-python main.py
+    python main.py
     ```
 4. (Optional) Build EXE with PyInstaller:
     ```
-pip install pyinstaller
+    pip install pyinstaller
     pyinstaller --onefile --windowed main.py
     ```
 
@@ -120,6 +144,7 @@ If you want to save your changes to your own GitHub repository:
 - `main.py` - main app (bot + UI)
 - `requirements.txt`
 - `README.md`
+- `web/` - Static web UI for deployment (Vercel, Netlify, etc.)
 - `.env.example` - (NOT committed - for your tokens/keys)
 - `assets/` - logo and images
 - `docs/` - documentation
@@ -141,13 +166,6 @@ If you want to save your changes to your own GitHub repository:
   - `!dm_all message`
   - `!post_thread THREAD_ID message`
   - `!list_channels`
-
----
-
-## Placeholders
-
-- `assets/logo.svg`: Brand logo (edit as you wish)
-- `input/`, `output/`, `docs/`: For future expansion
 
 ---
 
