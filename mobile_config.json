@@ -1,0 +1,8 @@
+// This file is for iOS mobile configuration and placeholders like YOUR_API_KEY should be dynamically populated from the code.
+{
+  "apiKey": "YOUR_API_KEY",
+  "apiBaseUrl": "https://your-api-base-url.com",
+  "environment": "production",
+  "appVersion": "1.0.0",
+  "platform": "iOS"
+}
